@@ -1,0 +1,27 @@
+{
+	"name": "Node.js",
+	"build": {
+		"dockerfile": "Dockerfile",
+		// Update 'VARIANT' to pick a Node version: 10, 12, 14
+		"args": { "VARIANT": "10" }
+	},
+
+	// Set *default* container specific settings.json values on container create.
+	"settings": { 
+		"terminal.integrated.shell.linux": "/bin/bash"
+	},
+
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"dbaeumer.vscode-eslint"
+	],
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "apt install -y build-essential libavahi-compat-libdnssd-dev g++-multilib lib32z1 lib32ncurses5 lib32bz2-1.0 rpm fakeroot dpkg libdbus-1-dev libx11-dev g++ libavahi-compat-libdnssd-dev gcc-4.8-multilib g++-4.8-multilib libnotify4 libexpat1-dev",
+
+	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
+	// "remoteUser": "node"
+}
