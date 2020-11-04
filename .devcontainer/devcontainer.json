@@ -20,7 +20,7 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "apt install -y build-essential libavahi-compat-libdnssd-dev g++-multilib lib32z1 lib32ncurses5 lib32bz2-1.0 rpm fakeroot dpkg libdbus-1-dev libx11-dev g++ libavahi-compat-libdnssd-dev gcc-4.8-multilib g++-4.8-multilib libnotify4 libexpat1-dev",
+	"postCreateCommand": "apt install -y build-essential g++-multilib lib32z1 lib32ncurses5 lib32bz2-1.0 rpm fakeroot dpkg libdbus-1-dev libx11-dev g++ libavahi-compat-libdnssd-dev gcc-4.8-multilib g++-4.8-multilib libnotify4 libexpat1-dev",
 
 	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
 	// "remoteUser": "node"
