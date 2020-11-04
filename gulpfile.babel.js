@@ -163,19 +163,19 @@ const cleanGlob = (glob, allowSkip) => {
   };
 };
 
-const windowsSignFile = (filePath, signDigest) =>
-  new Promise((resolve) => {
-    console.log(`Signing file: "${filePath}"\nWith digest: ${signDigest}`);
-    exec(
-      `vendor\\signtool sign /f ".cert.pfx" /p ${process.env.SIGN_CERT_PASS} /td ${signDigest} /fd ${signDigest} /tr "http://timestamp.digicert.com" /v /as "${filePath}"`,
-      {},
-      () => {
-        setTimeout(() => {
-          setTimeout(resolve, 500);
-        });
-      }
-    );
-  });
+// const windowsSignFile = (filePath, signDigest) =>
+//   new Promise((resolve) => {
+//     console.log(`Signing file: "${filePath}"\nWith digest: ${signDigest}`);
+//     exec(
+//       `vendor\\signtool sign /f ".cert.pfx" /p ${process.env.SIGN_CERT_PASS} /td ${signDigest} /fd ${signDigest} /tr "http://timestamp.digicert.com" /v /as "${filePath}"`,
+//       {},
+//       () => {
+//         setTimeout(() => {
+//           setTimeout(resolve, 500);
+//         });
+//       }
+//     );
+//   });
 
 function handleError(err) {
   // Print the plugin that the error came from so that you don't
@@ -273,16 +273,16 @@ gulp.task('watch', ['build'], () => {
   gulp.watch(paths.locales, ['locales']);
 });
 
-gulp.task('package:win', ['clean-dist-win', 'build-release'], (done) => {
-  packager(_.extend({}, defaultPackageConf, { platform: 'win32', arch: 'ia32' })).then(() => {
-    setTimeout(() => {
-      const packageExePath = `dist/${packageJSON.productName}-win32-ia32/${packageJSON.productName}.exe`;
-      windowsSignFile(packageExePath, 'sha1')
-      .then(() => windowsSignFile(packageExePath, 'sha256'))
-      .then(() => done());
-    }, 1000);
-  }).catch((err) => done(err));
-});
+// gulp.task('package:win', ['clean-dist-win', 'build-release'], (done) => {
+//   packager(_.extend({}, defaultPackageConf, { platform: 'win32', arch: 'ia32' })).then(() => {
+//     setTimeout(() => {
+//       const packageExePath = `dist/${packageJSON.productName}-win32-ia32/${packageJSON.productName}.exe`;
+//       windowsSignFile(packageExePath, 'sha1')
+//       .then(() => windowsSignFile(packageExePath, 'sha256'))
+//       .then(() => done());
+//     }, 1000);
+//   }).catch((err) => done(err));
+// });
 
 gulp.task('make:win', ['package:win'], (done) => {
   electronInstaller(winstallerConfig)
