@@ -130,6 +130,12 @@ app.setAppUserModelId('com.marshallofsound.gpmdp.core');
       });
       callback({ requestHeaders: newRequestHeaders });
     });
+    
+    mainWindow.webContents.session.webRequest.onBeforeRequest({
+      urls: ['://*.youtube.com/api/stats/*', '://googleads.g.doubleclick.net/pagead/id', '://music.youtube.com/generate_204', '://*.google.com/pagead/1p-user-list/*'],
+    }, (details, callback) => {
+        callback({cancel: true});
+    });
 
     global.mainWindowID = WindowManager.add(mainWindow, 'main');
 
